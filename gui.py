@@ -22,15 +22,15 @@ class Window:
         self.img_src_path = None
 
         Label(self.win, text='原图:', font=('微软雅黑', 16)).place(x=0, y=0)
-        Label(self.win, text='车牌区域:', font=('微软雅黑', 18)).place(x=600, y=125)
-        Label(self.win, text='识别结果:', font=('微软雅黑', 18)).place(x=600, y=240)
+        # Label(self.win, text='车牌区域:', font=('微软雅黑', 18)).place(x=600, y=125)
+        Label(self.win, text='识别结果:', font=('微软雅黑', 18)).place(x=600, y=220)
 
         self.can_src = Canvas(self.win, width=512, height=512, bg='white', relief='solid', borderwidth=1)  # 原图画布
         self.can_src.place(x=50, y=0)
-        self.can_lic1 = Canvas(self.win, width=245, height=85, bg='white', relief='solid', borderwidth=1)  # 车牌区域1画布
-        self.can_lic1.place(x=710, y=100)
+        # self.can_lic1 = Canvas(self.win, width=245, height=85, bg='white', relief='solid', borderwidth=1)  # 车牌区域1画布
+        # self.can_lic1.place(x=710, y=100)
         self.can_pred1 = Canvas(self.win, width=245, height=65, bg='white', relief='solid', borderwidth=1)  # 车牌识别1画布
-        self.can_pred1.place(x=710, y=220)
+        self.can_pred1.place(x=710, y=200)
 
         self.button1 = Button(self.win, text='选择文件', width=15, height=2, command=self.load_show_img)  # 选择文件按钮
         self.button1.place(x=580, y=wh - 140)
@@ -79,7 +79,7 @@ class Window:
                 self.can_src.create_image(258, 258, image=self.img_Tk,
                                           anchor='center')  # img_src_copy上绘制出了定位的车牌轮廓,将其显示在画板上
                 self.lic_Tk1 = ImageTk.PhotoImage(Image.fromarray(Lic_pred[0][0][:, :, ::-1]))
-                self.can_lic1.create_image(5, 5, image=self.lic_Tk1, anchor='nw')
+                # self.can_lic1.create_image(5, 5, image=self.lic_Tk1, anchor='nw')
                 self.can_pred1.create_text(35, 15, text=Lic_pred[0][1], anchor='nw', font=('黑体', 28))
 
             else:  # Lic_pred为空说明未能识别
@@ -87,7 +87,7 @@ class Window:
 
     def clear(self):
         self.can_src.delete('all')
-        self.can_lic1.delete('all')
+        # self.can_lic1.delete('all')
         self.can_pred1.delete('all')
         self.img_src_path = None
 
