@@ -14,7 +14,7 @@ def detect():
     cnn = keras.models.load_model('model\\cnn.h5')
     cnn_predict(cnn, [np.zeros((80, 240, 3))])
     print("已启动,开始识别吧！")
-    str_image_file = 'test_data\\img_1.png'  # 图像
+    str_image_file = 'test_data\\teacher.png'  # 图像
     img_open = cv2.imread(str_image_file)
     h, w = img_open.shape[0], img_open.shape[1]
     if h * w <= 240 * 80 and 2 <= w / h <= 5:  # 满足该条件说明可能整个图片就是一张车牌,无需定位,直接识别即可
