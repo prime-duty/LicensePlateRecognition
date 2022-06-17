@@ -3,6 +3,35 @@ import os
 import cv2
 import numpy as np
 from tensorflow.keras import layers, models
+import matplotlib.pyplot as plt
+
+
+# # define the function
+# def training_vis(hist):
+#     loss = hist.history['loss']
+#     # val_loss = hist.history['val_loss']
+#     acc = hist.history['accuracy']  # new version => hist.history['accuracy']
+#     # val_acc = hist.history['val_acc']  # => hist.history['val_accuracy']
+#
+#     # make a figure
+#     fig = plt.figure(figsize=(8, 4))
+#     # subplot loss
+#     ax1 = fig.add_subplot(121)
+#     ax1.plot(loss, label='train_loss')
+#     # ax1.plot(val_loss, label='val_loss')
+#     ax1.set_xlabel('Epochs')
+#     ax1.set_ylabel('Loss')
+#     ax1.set_title('Loss on Training and Validation Data')
+#     ax1.legend()
+#     # subplot acc
+#     ax2 = fig.add_subplot(122)
+#     ax2.plot(acc, label='train_acc')
+#     # ax2.plot(val_acc, label='val_acc')
+#     ax2.set_xlabel('Epochs')
+#     ax2.set_ylabel('Accuracy')
+#     ax2.set_title('Accuracy  on Training and Validation Data')
+#     ax2.legend()
+#     plt.tight_layout()
 
 
 def train_cnn():
@@ -57,6 +86,7 @@ def train_cnn():
     print("开始训练cnn")
     # 总loss为7个loss的和
     model.fit(X_train, y_train, epochs=1)
+    # training_vis(host)
     model.save('model\\c.h5')
     print('cnn.h5保存成功!!!')
 
@@ -77,6 +107,6 @@ def cnn_predict(cnn, Lic_img):
             for arg in np.argmax(lic_prediction, axis=1):  # 取每行中概率值最大的arg,将其转为字符
                 chars += characters[arg]
                 # print(characters[arg])
-            chars = chars[0:2] + '·' + chars[2:]
+            # chars = chars[0:2] + '·' + chars[2:]
             Lic_prediction.append((lic, chars))  # 将车牌和识别结果一并存入Lic_pred
     return Lic_prediction
